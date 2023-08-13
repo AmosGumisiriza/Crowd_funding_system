@@ -1,0 +1,11 @@
+  .custom-color {
+    color: #1DAA97;
+  }
+  .logo-link {
+    display: inline-block;
+    vertical-align: middle;
+ }
+ 
+ .logo-image {
+    max-height: 50px;
+ }

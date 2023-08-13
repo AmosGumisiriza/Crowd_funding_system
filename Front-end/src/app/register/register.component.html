@@ -1,0 +1,187 @@
+<div class="auth-container">
+  <div class="authbox">
+    <div class="login-tag font-inter-medium">
+      <span> REGISTRATION </span>
+    </div>
+
+    <!-- <div class="alternate">
+            <span>Welcome Back! Login to continue</span>
+        </div> -->
+
+    <hr />
+
+    <!-- invalid credentails -->
+    <div
+      *ngIf="errorRegistering"
+      class="invalid"
+      style="
+        display: inline-block;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid red;
+        color: red;
+        font-size: 14px;
+      "
+    >
+      <span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        Error occured while registering! Please and try again.
+      </span>
+    </div>
+    <div
+      *ngIf="userAlreadyExists"
+      class="invalid"
+      style="
+        display: inline-block;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid red;
+        color: red;
+        font-size: 14px;
+      "
+    >
+      <span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        This email already exists!</span
+      >
+    </div>
+
+    <form
+      name="form"
+      #registerForm="ngForm"
+      (ngSubmit)="registerForm.form.valid && register()"
+    >
+      <!-- Full name -->
+      <div class="email">
+        <input
+          placeholder="Full name"
+          class="email-input"
+          required
+          [(ngModel)]="registerData.user_name"
+          name="full_name"
+          #full_name="ngModel"
+          type="text"
+        />
+
+        <div
+          *ngIf="full_name.touched && !full_name.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="full_name.errors.required">Full name is required.</span>
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="email">
+        <input
+          placeholder="Email address"
+          class="email-input"
+          required
+          [(ngModel)]="registerData.user_email"
+          name="email"
+          #email="ngModel"
+          type="text"
+        />
+
+        <div
+          *ngIf="email.touched && !email.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="email.errors.required">Email is required.</span>
+        </div>
+        <!-- validate email -->
+        <!-- <div *ngIf="invalidEmail" style="color: red; text-align: left; font-size: 14px;">
+                            <span>Email is already registered.</span>
+                        </div> -->
+      </div>
+
+      <!-- pass -->
+      <div class="email">
+        <input
+          placeholder="Create a password"
+          class="email-input"
+          minlength="6"
+          required
+          [(ngModel)]="registerData.password"
+          name="password"
+          #password="ngModel"
+          type="password"
+        />
+
+        <!-- validation error -->
+        <div
+          *ngIf="password.touched && !password.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="password.errors.required">Password is required.</span>
+        </div>
+        <!-- validation eror -->
+        <div
+          *ngIf="password.touched && !password.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="password.errors.minlength"
+            >Th length of password must be 6 or more.</span
+          >
+        </div>
+      </div>
+
+      <!-- pan card -->
+      <div class="email">
+        <input
+          placeholder="Enter your phone number"
+          class="email-input"
+          minlength="10"
+          maxlength="10"
+          required
+          [(ngModel)]="registerData.pan_card"
+          name="pan_card"
+          #pan_card="ngModel"
+          type="text"
+        />
+
+        <!-- validation error -->
+        <div
+          *ngIf="pan_card.touched && !pan_card.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="pan_card.errors.required">Phone number is required.</span>
+        </div>
+        <!-- validation eror -->
+        <div
+          *ngIf="pan_card.touched && !pan_card.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="pan_card.errors.minlength || pan_card.errors.maxlength"
+            >The length of pan card must be 10 digits.</span
+          >
+       
+        </div>
+      </div>
+
+      <div class="login-button">
+        <button class="font-inter-medium" type="submit">
+          Create Account
+          <!-- <i class="fas fa-arrow-right"></i> -->
+        </button>
+      </div>
+
+      <div class="alternate">
+        <span>Already have an Account? </span>
+        <span [routerLink]="['/login']" class="alternate-link">Log in</span>
+      </div>
+
+      <!-- <div class="alternate">
+                <span>Don't have an account? </span> <span class="alternate-link">Register</span>
+            </div> -->
+
+      <div class="terms">
+        <span>
+          By joining, or logging in, you accept Change.org’s
+          <span class="forgot-password">Terms of Service</span> and
+          <span class="forgot-password">Privacy Policy</span>.
+        </span>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="auth-container">
+  <div class="authbox">
+    <div class="login-tag font-inter-medium">
+    
+      <span> LOGIN </span>
+    </div>
+    <hr />
+
+    <!-- invalid credentails -->
+    <div
+      *ngIf="invalidCredentials"
+      class="invalid"
+      style="
+        display: inline-block;
+        padding: 5px;
+        border-radius: 0px;
+        border: 1px solid red;
+        color: red;
+        font-size: 14px;
+      "
+    >
+      <span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true"></i>
+        Invalid Credentials! Please Try again.
+      </span>
+    </div>
+
+    <form
+      name="form"
+      #loginForm="ngForm"
+      (ngSubmit)="loginForm.form.valid && login()"
+    >
+      <div class="email">
+        <span>Email</span>
+
+        <input
+          placeholder="Enter Email"
+          class="email-input"
+          required
+          [(ngModel)]="loginData.email"
+          name="email"
+          #email="ngModel"
+          type="text"
+        />
+
+        <div
+          *ngIf="email.touched && !email.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="email.errors.required">Email is required.</span>
+        </div>
+      </div>
+
+      <div class="email">
+        <span>Password</span>
+        <input
+          placeholder="Enter Password"
+          class="email-input"
+          required
+          [(ngModel)]="loginData.password"
+          name="password"
+          #password="ngModel"
+          type="password"
+        />
+
+        <div
+          *ngIf="password.touched && !password.valid"
+          style="color: red; text-align: left; font-size: 14px"
+        >
+          <span *ngIf="password.errors.required">Password is required.</span>
+        </div>
+
+        <div class="forgot-password" (click)="goToVerifyEmail()">
+                    <span>Forgot password?</span>
+                </div> 
+      </div>
+
+      <div class="login-button">
+        <button class="font-inter-medium" type="submit">
+          LOGIN 
+          <!-- <i class="fas fa-arrow-right"></i> -->
+        </button>
+      </div>
+
+      <div class="alternate">
+        <span>Don't have an Account? </span>
+        <span [routerLink]="['/register']" class="alternate-link"
+          >Register</span
+        >
+      </div>
+
+      <div class="terms">
+        <span>
+          By joining, or logging in via Facebook, you accept the
+          <span class="forgot-password1">Terms of Service</span> And
+          <span class="forgot-password1">Privacy Policy</span>.
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
